@@ -24,14 +24,14 @@
         <span class="user">
             {% if request.user.is_authenticated %}
             Hello {{ request.user.first_name|default:request.user.username }},
-            {% comment %} <a href="{% url "logout" %}">Logout</a> {% endcomment %}
+            <a href="{% url "logout" %}">Logout</a>
             
-                <form action="{% url "logout" %}" method='post'>
+                {% comment %} <form action="{% url "logout" %}" method='post'>
 
                     {% csrf_token %}
                     <a href="{% url "logout" %}" type='submit'>RRRR</a>
                     <input type="submit" value='Logout'  style="background: none; border: none; cursor: pointer;">
-                </form>
+                </form> {% endcomment %}
 
             {% else %}
                 <a href="{% url "login" %}">Log-in</a>
