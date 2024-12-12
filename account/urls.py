@@ -24,20 +24,20 @@ urlpatterns = [
     ),
     ###
     path(
-        "password-reset/", auth_views.PasswordResetView.as_view(), name="password_reset"
+        "password_reset/", auth_views.PasswordResetView.as_view(), name="password_reset"
     ),
     path(
-        "pasword-reset/done/",
+        "password_reset/done/",
         auth_views.PasswordResetDoneView.as_view(),
         name="password_reset_done",
     ),
     path(
-        "password-reset/<uidb64>/<token>/",
+        "password_reset/<uidb64>/<token>/",
         auth_views.PasswordResetConfirmView.as_view(),
         name="password_reset_confirm",
     ),
     path(
-        "password-reset/complete/",
+        "password_reset/complete/",
         auth_views.PasswordResetCompleteView.as_view(),
         name="password_reset_complete",
     ),
