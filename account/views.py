@@ -1,7 +1,9 @@
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
+from django.shortcuts import redirect
 from django.shortcuts import render
+from django.contrib.auth.views import LoginView
 
 from .forms import LoginForm, UserRegistrationForm
 
@@ -32,6 +34,19 @@ def user_login(request):
         form = LoginForm()
     return render(request, "account/login.html", {"form": form})
 
+################################################################################
+class MyLoginView(LoginView):
+    template_name = "account/login.html"
+
+    def get(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            return redirect("dashboard")
+        return super().get(request, *args, **kwargs)
+
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        return response
+
 
 #########################################################################
 
@@ -49,7 +64,7 @@ def user_logout(request):
 
 def register(request):
     if request.user.is_authenticated:
-        return render(request, "account/err.html")
+        return redirect("dashboard")
 
     if request.method == "POST":
         user_form = UserRegistrationForm(request.POST)
