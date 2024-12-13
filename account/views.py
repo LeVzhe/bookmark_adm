@@ -10,9 +10,6 @@ from .forms import LoginForm, UserRegistrationForm
 
 ### Пока не используем, служит в качестве образца ###
 def user_login(request):
-    if request.user.is_authenticated:
-        return render(request, "account/err.html")
-
     if request.method == "POST":
         form = LoginForm(request.POST)
         if form.is_valid():
@@ -34,9 +31,10 @@ def user_login(request):
         form = LoginForm()
     return render(request, "account/login.html", {"form": form})
 
+
 ################################################################################
 class MyLoginView(LoginView):
-    template_name = "account/login.html"
+    template_name = "registration/login.html"
 
     def get(self, request, *args, **kwargs):
         if request.user.is_authenticated:
