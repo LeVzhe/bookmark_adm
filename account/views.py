@@ -8,6 +8,9 @@ from .forms import LoginForm, UserRegistrationForm
 
 ### Пока не используем, служит в качестве образца ###
 def user_login(request):
+    if request.user.is_authenticated:
+        return render(request, "account/err.html")
+
     if request.method == "POST":
         form = LoginForm(request.POST)
         if form.is_valid():
@@ -45,6 +48,9 @@ def user_logout(request):
 
 
 def register(request):
+    if request.user.is_authenticated:
+        return render(request, "account/err.html")
+
     if request.method == "POST":
         user_form = UserRegistrationForm(request.POST)
         if user_form.is_valid():
