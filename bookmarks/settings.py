@@ -25,9 +25,9 @@ SECRET_KEY = "django-insecure-k3^mxh4jdf@za(&la_mwpice46g1yjcen=(4&%g8gk6tq9u9)5
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
-
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 # Application definition
 
 INSTALLED_APPS = [
@@ -39,6 +39,11 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
 ]
+
+# Login
+LOGIN_REDIRECT_URL = "dashboard"
+LOGIN_URL = "login"
+LOGOUT_URL = "logout"
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -122,3 +127,11 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+MEDIA_URL = "media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+AUTHENTICATION_BACKENDS = [
+    "django.contrib.auth.backends.ModelBackend",
+    "account.authentication.EmailAuthBackend",
+]
