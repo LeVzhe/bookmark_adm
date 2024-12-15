@@ -43,7 +43,7 @@
             {% for message in messages %}
                 <li class="{{ message.tags }}">
                     {{ message|safe }}
-                    <a href="#" class="close">x</a>
+                    <a href="#" class="close" onclick="closeMessage(event)">x</a>
                 </li>
             {% endfor %}
         </ul>
@@ -52,5 +52,14 @@
         {% block content %}
         {% endblock %}
     </div>
+    <script>
+        function closeMessage(event) {
+            event.preventDefault();
+            const messageItem = event.target.closest('li');
+            if (messageItem) {
+                messageItem.style.display = 'none';
+            }
+        }
+    </script> 
 </body>
 </html>
