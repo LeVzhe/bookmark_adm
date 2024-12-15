@@ -1,9 +1,8 @@
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import redirect
-from django.shortcuts import render
 from django.contrib.auth.views import LoginView
+from django.http import HttpResponse, HttpResponseRedirect
+from django.shortcuts import redirect, render
 
 from .forms import LoginForm, UserRegistrationForm
 
